@@ -1,4 +1,4 @@
-package com.example.taskdelivery.ui
+package com.example.taskdelivery
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp

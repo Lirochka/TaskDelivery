@@ -1,10 +1,15 @@
 package com.example.data.network.model
 
+import com.example.data.room.entity.FoodEntity
 import com.google.gson.annotations.SerializedName
 
 data class FoodDto(
-    @SerializedName("idCategory") val id: String?,
-    @SerializedName("strCategory")val category: String?,
-    @SerializedName("strCategoryDescription")val description: String?,
-    @SerializedName("strCategoryThumb")val image: String?
-)
+
+    @SerializedName("meals") val meals: List<MealsDto>?,
+) {
+    fun toFoodEntity(): FoodEntity {
+        return FoodEntity(
+            meals = meals?.map { it.toMealsEntity() }
+        )
+    }
+}
