@@ -7,7 +7,6 @@ import com.example.data.repository.FoodByCategoryRepoImpl
 import com.example.data.room.FoodDao
 import com.example.data.room.FoodDataBase
 import com.example.domain.repository.FoodByCategoryRepo
-import com.example.domain.repository.GetFoodRoomRepo
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

@@ -1,30 +1,21 @@
 package com.example.data.repository
 
 import com.example.common.Resource
-import com.example.data.mappers.FoodMapper
 import com.example.data.network.ApiService
 import com.example.data.network.utils.SafeApiRequest
 import com.example.data.room.FoodDao
-import com.example.domain.model.Food
 import com.example.domain.model.Meals
 import com.example.domain.repository.FoodByCategoryRepo
 import java.io.IOException
 import javax.inject.Inject
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.map
 import retrofit2.HttpException
 
 class FoodByCategoryRepoImpl @Inject constructor(
     private val apiService: ApiService,
     private val foodDao: FoodDao
 ): FoodByCategoryRepo, SafeApiRequest() {
-
-    //    override suspend fun getFoodsByCategory(category: String): Food {
-//        val responseDto = safeApiRequest{ apiService.getFoodsByCategory(category) }
-//        return responseDto.let { mapper.mapFrom(it) }
-//    }
-
     override fun getFoodsByCategory(category: String): Flow<Resource<List<Meals>>> = flow {
         emit(Resource.Loading())
         try {

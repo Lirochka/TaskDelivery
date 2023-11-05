@@ -42,6 +42,9 @@ import coil.compose.AsyncImage
 import com.example.domain.model.Food
 import com.example.domain.model.Meals
 import com.example.taskdelivery.R
+import com.example.taskdelivery.screens.category.components.CategoryTab
+import com.example.taskdelivery.screens.category.components.FoodCard
+import com.example.taskdelivery.screens.category.components.MainTopAppBar
 
 @SuppressLint("StateFlowValueCalledInComposition")
 @Composable
@@ -57,6 +60,8 @@ fun Categories(
             .fillMaxSize()
     ) {
         Column() {
+            MainTopAppBar()
+            Spacer(modifier = Modifier.height(8.dp))
             CategoryTab(
                 categoryList = getAllFoodCategory(),
                 isSelected = selectedCategory?.categoryName,
@@ -86,101 +91,5 @@ fun Categories(
 }
 
 
-@Composable
-fun CategoryTab(
-    categoryList: List<FoodCategory>,
-    isSelected: String?,
-    onFetchCategory: (String) -> Unit,
-) {
-    LazyRow(modifier = Modifier.padding(start = 15.dp)) {
-        items(categoryList) {
-            Card(
-                shape = RoundedCornerShape(20),
-                modifier = Modifier
-                    .padding(end = 10.dp)
-                    .clickable { onFetchCategory(it.categoryName) }
-            ) {
-                Log.d("TAG", "CategoryItem: " + isSelected)
-                Box(
-                    modifier = Modifier.background(
-                        color =
-                        if (it.categoryName.contains(isSelected.toString()))
-                            colorResource(id = R.color.purple_200)
-                        else Color.Gray
-                    )
-                ) {
-                    Text(
-                        it.categoryName,
-                        textAlign = TextAlign.Start,
-                        modifier = Modifier.padding(
-                            start = 12.dp,
-                            top = 5.dp,
-                            bottom = 5.dp,
-                            end = 12.dp
-                        ),
-                        style = TextStyle(
-                            fontSize = 15.sp,
-                            color = Color.White,
-                            fontFamily = FontFamily.Serif
-                        )
-                    )
-                }
-            }
-        }
-    }
-}
 
-@Composable
-fun FoodCard(
-    meals: List<Meals>,
-    modifier: Modifier = Modifier,
-) {
-    LazyColumn {
-        items(meals) { meals ->
-            Card(
-                modifier.padding(8.dp),
-                border = BorderStroke(2.dp, colorResource(id = R.color.purple_500))
-            ) {
-                Row(
-                    modifier
-                        .fillMaxWidth()
-                        .padding(8.dp)
-                ) {
-                    AsyncImage(
-                        model = meals.imageUrl,
-                        modifier = Modifier.size(100.dp),
-                        error = painterResource(id = R.drawable.ic_launcher_background),
-                        placeholder = painterResource(id = R.drawable.ic_launcher_background),
-                        contentDescription = null,
-                    )
 
-                    Spacer(modifier = Modifier.width(8.dp))
-
-                    Column {
-                        Text(
-                            text = meals.title ?: "Not Available",
-                            color = Color.Black,
-                            fontSize = 20.sp,
-                            fontWeight = FontWeight.Bold
-                        )
-
-                        Spacer(modifier = Modifier.height(4.dp))
-                        Row {
-                            Box(Modifier.weight(1f))
-                            OutlinedButton(
-                                border = BorderStroke(1.dp, Color.Red),
-                                shape = RoundedCornerShape(5.dp),
-                                onClick = { /*TODO*/ },
-                            ) {
-                                Text(
-                                    color = Color.Red,
-                                    text = "от 345 р"
-                                )
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-}

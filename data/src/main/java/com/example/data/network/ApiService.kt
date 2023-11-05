@@ -6,7 +6,6 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface ApiService {
-
     @GET("api/json/v1/1/filter.php")
     suspend fun getFoodsByCategory(
         @Query("c") category: String,
