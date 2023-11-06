@@ -1,6 +1,5 @@
 package com.example.taskdelivery.screens.category.components
 
-import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
@@ -13,6 +12,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.layoutId
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
@@ -28,7 +28,11 @@ fun CategoryTab(
     isSelected: String?,
     onFetchCategory: (String) -> Unit,
 ) {
-    LazyRow(modifier = Modifier.padding(start = 15.dp)) {
+    LazyRow(
+        modifier = Modifier
+            .padding(start = 15.dp)
+            .layoutId("category")
+    ) {
         items(categoryList) {
             Card(
                 shape = RoundedCornerShape(20),

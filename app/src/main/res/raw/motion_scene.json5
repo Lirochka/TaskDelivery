@@ -1,0 +1,72 @@
+{
+  ConstraintSets: {
+    start: {
+      searchbar: {
+        width: 'spread',
+        start: ['box', 'start', 12],
+        end: ['box', 'end', 12],
+        top: ['box', 'top', 18],
+      },
+
+      banner: {
+        width: 'spread',
+        height: 180,
+        start: ['box','start'],
+        end: ['box', 'end'],
+        top: ['searchbar', 'bottom', -8]
+      },
+
+      category: {
+        width: 'spread',
+        start: ['box','start'],
+        end: ['box', 'end'],
+        top: ['banner', 'bottom', -32]
+      },
+
+      box: {
+        height: 'spread',
+        width: 'spread',
+        start: ['parent', 'start'],
+        end: ['parent', 'end'],
+        top: ['parent', 'top'],
+        bottom: ['category', 'bottom', -16]
+      }
+
+    },
+
+    end: {
+
+      searchbar: {
+        width: 'spread',
+        start: ['box', 'start', 12],
+        end: ['box', 'end', 12],
+        top: ['banner', 'bottom', 0]
+      },
+
+      category: {
+        width: 'spread',
+        start: ['box','start'],
+        end: ['box', 'end'],
+        top: ['searchbar', 'bottom', 12]
+      },
+
+
+      banner: {
+        width: 'spread',
+        height: 0,
+        start: ['box','start'],
+        end: ['box', 'end'],
+        top: ['box', 'top', 18]
+      },
+
+      box: {
+        height: 'spread',
+        width: 'spread',
+        start: ['parent', 'start'],
+        end: ['parent', 'end'],
+        top: ['parent', 'top'],
+        bottom: ['parent', 'bottom', -16]
+      }
+    }
+  },
+}
