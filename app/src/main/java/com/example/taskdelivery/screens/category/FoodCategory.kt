@@ -8,7 +8,6 @@ import com.example.taskdelivery.screens.category.FoodCategory.PORK
 import com.example.taskdelivery.screens.category.FoodCategory.SEAFOOD
 import com.example.taskdelivery.screens.category.FoodCategory.VEGAN
 
-
 enum class FoodCategory(val categoryName: String) {
     BEEF("beef"),
     CHICKEN("chicken"),
@@ -18,7 +17,6 @@ enum class FoodCategory(val categoryName: String) {
     SEAFOOD("seafood"),
     VEGAN("vegan")
 }
-
 fun getAllFoodCategory(): List<FoodCategory> {
     return listOf(BEEF, CHICKEN, DESSERT, PASTA, PORK, SEAFOOD, VEGAN)
 }

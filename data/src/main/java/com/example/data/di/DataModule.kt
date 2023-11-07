@@ -4,8 +4,9 @@ import android.content.Context
 import com.example.common.Constant.BASE_URL
 import com.example.data.network.ApiService
 import com.example.data.repository.FoodByCategoryRepoImpl
-import com.example.data.room.FoodDao
+import com.example.data.room.dao.MealsDao
 import com.example.data.room.FoodDataBase
+import com.example.data.room.dao.FoodDao
 import com.example.domain.repository.FoodByCategoryRepo
 import dagger.Module
 import dagger.Provides
@@ -46,16 +47,22 @@ object DataModule {
 
     @Singleton
     @Provides
-    fun provideCategoryRepository(api: ApiService, foodDao: FoodDao): FoodByCategoryRepo {
-        return FoodByCategoryRepoImpl(api, foodDao)
+    fun provideCategoryRepository(api: ApiService, foodDao: FoodDao, mealsDao: MealsDao): FoodByCategoryRepo {
+        return FoodByCategoryRepoImpl(api,foodDao, mealsDao)
     }
-
+    @Singleton
     @Provides
     fun provideDataBase(@ApplicationContext context: Context): FoodDataBase {
         return FoodDataBase.getDatabase(context)
     }
+    @Singleton
     @Provides
-    fun provideDAO(foodDataBase: FoodDataBase): FoodDao {
-        return foodDataBase.getSavedFoodDao()
+    fun provideMealsDAO(foodDataBase: FoodDataBase): MealsDao {
+        return foodDataBase.getMealsDao()
+    }
+    @Singleton
+    @Provides
+    fun provideFoodDAO(foodDataBase: FoodDataBase): FoodDao {
+        return foodDataBase.getFoodDao()
     }
 }

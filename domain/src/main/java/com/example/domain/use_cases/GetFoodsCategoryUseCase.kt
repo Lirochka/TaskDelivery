@@ -1,5 +1,6 @@
 package com.example.domain.use_cases
 
+import android.util.Log
 import com.example.common.Resource
 import com.example.domain.model.Food
 import com.example.domain.model.Meals
@@ -15,8 +16,9 @@ class GetFoodsCategoryUseCase @Inject constructor(
 ) {
     operator fun invoke(
         category: String,
-    ): Flow<Resource<List<Meals>>> {
+    ): Flow<Resource<Food>>{
 
         return repository.getFoodsByCategory(category)
+        Log.d("KKK", "GetFoodsCategoryUseCase: ${category}")
     }
 }

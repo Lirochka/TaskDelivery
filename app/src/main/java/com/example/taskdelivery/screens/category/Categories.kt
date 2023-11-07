@@ -1,5 +1,6 @@
 package com.example.taskdelivery.screens.category
 
+import android.util.Log
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.lazy.rememberLazyListState
@@ -13,6 +14,7 @@ import androidx.compose.ui.input.nestedscroll.NestedScrollSource
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.taskdelivery.screens.category.components.ProductsGrid
+import com.example.taskdelivery.screens.category.components.ProfileHeader
 
 @Composable
 fun HomeScreen() {
@@ -47,7 +49,9 @@ fun HomeScreen() {
             )
         }
         Column {
-            ProfileHeader(progress = toolbarProgress)
+            ProfileHeader(
+                progress = toolbarProgress,
+                viewModel = hiltViewModel())
         }
     }
 }

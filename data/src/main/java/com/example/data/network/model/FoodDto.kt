@@ -5,11 +5,11 @@ import com.google.gson.annotations.SerializedName
 
 data class FoodDto(
 
-    @SerializedName("meals") val meals: List<MealsDto>?,
+    @SerializedName("meals") val meals: List<MealsDto>,
 ) {
     fun toFoodEntity(): FoodEntity {
         return FoodEntity(
-            meals = meals?.map { it.toMealsEntity() }
+            meals = meals.map { it.toMealsEntity() }
         )
     }
 }

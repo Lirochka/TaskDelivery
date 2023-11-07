@@ -14,8 +14,8 @@ data class MealsDto(
 
     fun toMealsEntity(): MealsEntity {
         return MealsEntity(
-            title = title,
-            imageUrl = imageUrl,
+            title = title ?: "",
+            imageUrl = imageUrl ?: "",
             id = id ?: "",
         )
     }

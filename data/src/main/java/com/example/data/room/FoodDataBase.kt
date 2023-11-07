@@ -5,20 +5,23 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
+import com.example.data.room.converter.FoodEntityConverter
+import com.example.data.room.converter.MealsEntityConverter
+import com.example.data.room.dao.FoodDao
+import com.example.data.room.dao.MealsDao
 import com.example.data.room.entity.FoodEntity
 import com.example.data.room.entity.MealsEntity
-import com.example.domain.model.Food
-import com.example.domain.model.Meals
 
 @Database(
-    entities = [MealsEntity::class],
+    entities = [FoodEntity::class, MealsEntity::class],
     version = 1,
     exportSchema = false
 )
-@TypeConverters(RoomTypeConvertor::class, ListOfStringToStringTypeConvertor::class)
+@TypeConverters(MealsEntityConverter::class, FoodEntityConverter::class)
 abstract class FoodDataBase : RoomDatabase() {
 
-    abstract fun getSavedFoodDao(): FoodDao
+    abstract fun getMealsDao(): MealsDao
+    abstract fun getFoodDao(): FoodDao
 
     companion object {
         @Volatile

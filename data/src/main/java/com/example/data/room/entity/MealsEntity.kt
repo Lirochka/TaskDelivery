@@ -7,7 +7,7 @@ import com.example.domain.model.Meals
 
 @Entity
 data class MealsEntity(
-    @PrimaryKey(autoGenerate = false)
+    @PrimaryKey
     var id: String,
     var title: String?,
     var imageUrl: String?,
@@ -15,7 +15,7 @@ data class MealsEntity(
 
     fun toMovie(): Meals {
         return Meals(
-            id = id ?: "",
+            id = id,
             title = title ?: "",
             imageUrl = imageUrl ?: ""
         )

@@ -1,5 +1,6 @@
 package com.example.taskdelivery.screens.category.components
 
+import android.util.Log
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -26,6 +27,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
+import com.example.domain.model.Food
 import com.example.domain.model.Meals
 import com.example.taskdelivery.R
 
@@ -33,13 +35,13 @@ import com.example.taskdelivery.R
 fun FoodCard(
     meals: List<Meals>,
     modifier: Modifier = Modifier,
-    lazyListState: LazyListState,
+   lazyListState: LazyListState,
 ) {
 
     LazyColumn(
         contentPadding = PaddingValues(top = 260.dp, bottom = 16.dp),
         state = lazyListState
-    ){
+    ) {
         items(meals) { meals ->
             Card(
                 modifier
@@ -68,7 +70,7 @@ fun FoodCard(
                             fontSize = 20.sp,
                             fontWeight = FontWeight.Bold
                         )
-
+                        Log.d("KKK", "Text: ${meals.title}")
                         Spacer(modifier = Modifier.height(4.dp))
                         Row {
                             Box(Modifier.weight(1f))
