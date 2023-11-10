@@ -1,6 +1,5 @@
 package com.example.taskdelivery.screens.category
 
-import android.util.Log
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
@@ -31,7 +30,6 @@ class CategoryViewModel @Inject constructor(
         category: String,
     ) {
         getFoodsCategoryUseCase(category).onEach { response ->
-            Log.d("KKK", "GetFoodsCategoryUseCase: ${category}")
             when (response) {
                 is Resource.Loading -> {
                     _listFoodByCategoryState.value = ListFoodState(isLoading = true)
@@ -41,7 +39,6 @@ class CategoryViewModel @Inject constructor(
                         allFoodResponse = response.data,
                         isLoading = false
                     )
-                    Log.d("KKK", "CategoryViewModel: ${response.data}")
                 }
                 is Resource.Error -> {
                     _listFoodByCategoryState.value =
@@ -54,6 +51,5 @@ class CategoryViewModel @Inject constructor(
     fun onSelectedCategoryChanged(category: String?) {
         val newCategory = getFoodCategory(category)
         selectedCategory.value = newCategory
-        Log.d("KKK", "onSelectedCategoryChanged: $newCategory")
     }
 }

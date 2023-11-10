@@ -1,6 +1,5 @@
 package com.example.taskdelivery.screens.category.components
 
-import android.util.Log
 import android.widget.Toast
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -22,13 +21,12 @@ fun ProductsGrid(
     val context = LocalContext.current
 
     if (listFoodByCategoryState.allFoodResponse != null) {
-        listFoodByCategoryState.allFoodResponse.meals.let {
+        listFoodByCategoryState.allFoodResponse.let {
                 FoodCard(
                     meals = it,
                     modifier = modifier,
                     lazyListState = lazyListState
                 )
-            Log.d("KKK", "ProductsGrid: ${it}")
         }
     }
 

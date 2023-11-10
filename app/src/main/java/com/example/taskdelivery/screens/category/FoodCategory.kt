@@ -20,7 +20,6 @@ enum class FoodCategory(val categoryName: String) {
 fun getAllFoodCategory(): List<FoodCategory> {
     return listOf(BEEF, CHICKEN, DESSERT, PASTA, PORK, SEAFOOD, VEGAN)
 }
-
 fun getFoodCategory(category: String?): FoodCategory?{
     val map = FoodCategory.values().associateBy(FoodCategory::categoryName)
     return map[category]

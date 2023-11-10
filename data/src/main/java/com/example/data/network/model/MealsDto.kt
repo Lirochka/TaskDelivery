@@ -12,11 +12,12 @@ data class MealsDto(
     @SerializedName("idMeal") var id: String?,
 ) {
 
-    fun toMealsEntity(): MealsEntity {
+    fun toMealsEntity(category: String): MealsEntity {
         return MealsEntity(
             title = title ?: "",
             imageUrl = imageUrl ?: "",
             id = id ?: "",
+            category = category
         )
     }
 }

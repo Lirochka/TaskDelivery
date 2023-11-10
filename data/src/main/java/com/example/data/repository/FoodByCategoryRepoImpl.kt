@@ -1,13 +1,10 @@
 package com.example.data.repository
 
-import android.util.Log
 import com.example.common.Resource
 import com.example.data.network.ApiService
 import com.example.data.network.utils.SafeApiRequest
 import com.example.data.room.dao.FoodDao
 import com.example.data.room.dao.MealsDao
-import com.example.data.room.entity.FoodEntity
-import com.example.domain.model.Food
 import com.example.domain.model.Meals
 import com.example.domain.repository.FoodByCategoryRepo
 import java.io.IOException
@@ -22,12 +19,10 @@ class FoodByCategoryRepoImpl @Inject constructor(
     private val mealsDao: MealsDao
 ): FoodByCategoryRepo, SafeApiRequest() {
 
-    private val foodEntity: FoodEntity = FoodEntity(0, listOf())
-    override fun getFoodsByCategory(category: String): Flow<Resource<Food>> = flow {
+    override fun getFoodsByCategory(category: String): Flow<Resource<List<Meals>>> = flow {
         emit(Resource.Loading())
         try {
           fetchAndInsertFood(apiService,foodDao, mealsDao, category)
-            Log.d("KKK", "FoodByCategoryRepoImpl: ${apiService.getFoodsByCategory(category)}")
         } catch (e: HttpException) {
             emit(
                 Resource.Error(
@@ -41,7 +36,7 @@ class FoodByCategoryRepoImpl @Inject constructor(
                 )
             )
         }
-        emit(Resource.Success(getFoodFromDb(foodDao)))
+        emit(Resource.Success(getFoodFromDb(mealsDao, category)))
     }
 
 
@@ -52,12 +47,12 @@ class FoodByCategoryRepoImpl @Inject constructor(
         category: String
     ) {
         val remoteFood = foodApiService.getFoodsByCategory(category)
-        foodDao.insertFood(remoteFood.toFoodEntity())
-        remoteFood.meals?.let { mealsDao.upsert(it.map { it.toMealsEntity() }) }
+        foodDao.insertFood(remoteFood.toFoodEntity(category))
+        remoteFood.meals?.let { mealsDao.upsert(it.map { it.toMealsEntity(category) }) }
     }
 
-    private suspend fun getFoodFromDb(foodDao: FoodDao): Food {
-        val newFood = foodDao.getAllFood().let { it.toFood()}
+    private suspend fun getFoodFromDb(mealsDao: MealsDao, category: String): List<Meals> {
+        val newFood = mealsDao.getAllFood(category).map { it.toMovie()}
         return newFood
     }
 }

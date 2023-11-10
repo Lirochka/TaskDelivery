@@ -1,7 +1,6 @@
 package com.example.taskdelivery.screens.category.components
 
 import android.annotation.SuppressLint
-import android.util.Log
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.runtime.Composable
@@ -57,7 +56,6 @@ fun ProfileHeader(
                 viewModel.getListByCategory(it)
             }
         )
-        Log.d("KKK", "CategoryTab: ${selectedCategory?.categoryName}")
     }
 }
 
