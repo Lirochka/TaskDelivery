@@ -2,7 +2,6 @@ package com.example.data.repository
 
 import com.example.common.Resource
 import com.example.data.network.ApiService
-import com.example.data.network.utils.SafeApiRequest
 import com.example.data.room.dao.FoodDao
 import com.example.data.room.dao.MealsDao
 import com.example.domain.model.Meals
@@ -17,8 +16,7 @@ class FoodByCategoryRepoImpl @Inject constructor(
     private val apiService: ApiService,
     private val foodDao: FoodDao,
     private val mealsDao: MealsDao
-): FoodByCategoryRepo, SafeApiRequest() {
-
+): FoodByCategoryRepo {
     override fun getFoodsByCategory(category: String): Flow<Resource<List<Meals>>> = flow {
         emit(Resource.Loading())
         try {
@@ -52,7 +50,7 @@ class FoodByCategoryRepoImpl @Inject constructor(
     }
 
     private suspend fun getFoodFromDb(mealsDao: MealsDao, category: String): List<Meals> {
-        val newFood = mealsDao.getAllFood(category).map { it.toMovie()}
+        val newFood = mealsDao.getAllFood(category).map { it.toMeals()}
         return newFood
     }
 }

@@ -12,7 +12,6 @@ class GetFoodsCategoryUseCase @Inject constructor(
     operator fun invoke(
         category: String,
     ): Flow<Resource<List<Meals>>>{
-
         return repository.getFoodsByCategory(category)
     }
 }

@@ -13,7 +13,7 @@ data class MealsEntity(
     var imageUrl: String?,
     var category: String?
 ) {
-    fun toMovie(): Meals {
+    fun toMeals(): Meals {
         return Meals(
             id = id,
             title = title ?: "",

@@ -5,6 +5,5 @@ import com.example.domain.model.Meals
 import kotlinx.coroutines.flow.Flow
 
 interface FoodByCategoryRepo {
-
     fun getFoodsByCategory(category: String): Flow<Resource<List<Meals>>>
 }
